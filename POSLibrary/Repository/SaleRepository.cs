@@ -83,6 +83,15 @@ namespace POSLibrary.Repositories
             }
         }
 
+        public Sale GetSalebyId(int saleId)
+        {
+            using (var ctx = new POSDbContext())
+            {
+                return ctx.Sales.Find(saleId);
+            }
+        }
+
+
 
     }
 }

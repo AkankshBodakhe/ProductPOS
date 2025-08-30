@@ -34,8 +34,8 @@ namespace POSApp
         public Frm_Pos()
         {
             InitializeComponent();
-            tabControl2.Visible = true;
-            tabControl1.Visible = false;// Hide main tab initially
+            tabControl2.Visible = false;
+            tabControl1.Visible = true;// Hide main tab initially
 
         }
 
@@ -770,14 +770,17 @@ namespace POSApp
                 // get sale items for this invoice
                 var saleItems = _saleService.GetSaleItemsBySaleId(invoiceNo);
 
+                Sale saleForPdf = _saleService.getSalebySaleid(invoiceNo);
+
                 if (saleItems == null || saleItems.Count == 0)
                 {
                     MessageBox.Show("No sale items found for this invoice.");
                     return;
                 }
 
-                // Call print function
-                PrinterHelper(invoiceNo, saleItems);
+
+
+                PrinterHelper.PrintInvoiceAsync(saleForPdf, saleItems);
             }
         }
 

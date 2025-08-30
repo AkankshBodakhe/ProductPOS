@@ -104,5 +104,21 @@ namespace POSLibrary.Services
             return _repo.GetSaleItemsBySaleId(saleId);
         }
 
+
+        public Sale getSalebySaleid(int saleId)
+        {
+            var sale = _repo.GetSalebyId(saleId);
+            return new Sale
+                {
+                    Id = sale.Id,
+                    SaleDate = sale.SaleDate,
+                    SalesmanName = sale.SalesmanName,
+                    CustomerName = sale.CustomerName,
+                    CustomerContact = sale.CustomerContact,
+                    PaymentMode = sale.PaymentMode,
+                    GrandTotal = sale.GrandTotal
+                };
+        }
+
     }
 }
